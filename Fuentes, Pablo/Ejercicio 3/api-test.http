@@ -1,0 +1,66 @@
+@url = http://localhost:3000
+
+@materiaId = 2
+@calificacionId = 2
+
+### Crear una materia
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Física"
+}
+
+### Listar materias
+GET {{url}}/materias
+
+### Consultar una materia
+GET {{url}}/materias/{{materiaId}}
+
+### Registrar calificación
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Juan",
+  "materiaId": {{materiaId}},
+  "notas": [8, 7.5, 9]
+}
+
+### Ver todas las calificaciones
+GET {{url}}/calificaciones
+
+### Filtrar por alumno
+GET {{url}}/calificaciones?alumno=Alumno%20de%20prueba%20HTTP
+
+### Filtrar por materia
+GET {{url}}/calificaciones?materiaId={{materiaId}}
+
+### Consultar una calificación
+GET {{url}}/calificaciones/{{calificacionId}}
+
+### Actualizar calificación
+PUT {{url}}/calificaciones/{{calificacionId}}
+Content-Type: application/json
+
+{
+  "alumno": "Juan",
+  "materiaId": {{materiaId}},
+  "notas": [6, 8, 10]
+}
+
+### Eliminar calificación
+DELETE {{url}}/calificaciones/{{calificacionId}}
+
+### Eliminar materia
+DELETE {{url}}/materias/{{materiaId}}
+
+### Ejemplo de notas inválidas
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Alumno inválido",
+  "materiaId": 1,
+  "notas": [12, "7", 8]
+}
