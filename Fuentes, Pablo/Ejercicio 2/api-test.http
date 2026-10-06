@@ -1,0 +1,45 @@
+@url = http://localhost:3000
+@tareaId = 1
+
+### Crear tarea
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Comprar huevos",
+  "estado": false
+}
+
+### Listar tareas
+GET {{url}}/tareas
+
+### Filtrar tareas pendientes
+GET {{url}}/tareas?estado=pendientes
+
+### Filtrar tareas completadas
+GET {{url}}/tareas?estado=completadas
+
+### Obtener una tarea específica
+GET {{url}}/tareas/{{tareaId}}
+
+### Cambiar el estado de una tarea
+PATCH {{url}}/tareas/{{tareaId}}
+Content-Type: application/json
+
+{
+  "estado": true
+}
+
+### Eliminar tarea
+DELETE {{url}}/tareas/{{tareaId}}
+
+### Filtro inválido: estado no permitido
+GET {{url}}/tareas?estado=archivadas
+
+### Estado inválido en actualización
+PATCH {{url}}/tareas/1
+Content-Type: application/json
+
+{
+  "estado": "true"
+}
